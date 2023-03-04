@@ -19,7 +19,8 @@ TODAY = datetime.date.today()
 
 
 def train(ticker="MSFT"):
-    data = yf.download(ticker, "2020-01-01", TODAY.strftime("%Y-%m-%d"))
+    #data = yf.download(ticker, "2020-01-01", TODAY.strftime("%Y-%m-%d"))
+    data = yf.download(ticker, "2020-01-01", "2022-12-31")
 
     df_forecast = data.copy()
     df_forecast.reset_index(inplace=True)
@@ -48,8 +49,8 @@ def predict(ticker="MSFT", days=7):
 
     forecast = model.predict(df)
 
-    model.plot(forecast).savefig(f"{ticker}_plot.png")
-    model.plot_components(forecast).savefig(f"{ticker}_plot_components.png")
+    #model.plot(forecast).savefig(f"{ticker}_plot.png")
+    #model.plot_components(forecast).savefig(f"{ticker}_plot_components.png")
 
     return forecast.tail(days).to_dict("records")
 
